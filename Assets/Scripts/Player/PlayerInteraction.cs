@@ -28,7 +28,9 @@ public class PlayerInteraction : MonoBehaviour
     }
 
     private void UseTarget() {
-
+        if (Input.GetMouseButtonUp(0) && _target != null) {
+            _target.Use();
+        }
     }
 
     private void ChangeCrosshairState() {
