@@ -17,12 +17,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _toggleHeadBobSpeed = 3f;
 
     CharacterController _characterController;
+    AudioSource _stepsAudio;
     private float defaultYPos = 0;
     private float timer = 0;
 
 
     private void Awake() {
         _characterController = GetComponent<CharacterController>();
+        _stepsAudio = GetComponent<AudioSource>();
         defaultYPos = _camera.localPosition.y;
     }
 
@@ -34,6 +36,17 @@ public class PlayerMovement : MonoBehaviour
 
         _characterController.Move(move);
         HandleHeadBob();
+        HandleStepsAudio();
+    }
+
+    private void HandleStepsAudio() {
+        float speed = new Vector3(_characterController.velocity.x, 0f, _characterController.velocity.z).magnitude;
+
+        if (speed > _toggleHeadBobSpeed) {
+            _stepsAudio.enabled = true;
+        } else {
+            _stepsAudio.enabled = false;
+        }
     }
 
     private void HandleHeadBob() {
