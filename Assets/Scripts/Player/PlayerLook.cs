@@ -29,15 +29,15 @@ public class PlayerLook : MonoBehaviour
     private void GetInput() {
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
-        mouseX *= _mouseSensitivity.x * Time.deltaTime;
-        mouseY *= _mouseSensitivity.y * Time.deltaTime;
+        mouseX *= _mouseSensitivity.x;
+        mouseY *= _mouseSensitivity.y;
 
-        /*float gamepadX = Input.GetAxis("Horizontal");
+        float gamepadX = Input.GetAxis("Horizontal");
         float gamepadY = Input.GetAxis("Vertical");
         gamepadX = gamepadX * _mouseSensitivity.x * Time.deltaTime;
-        gamepadY = gamepadY * _mouseSensitivity.y * Time.deltaTime;*/
+        gamepadY = gamepadY * _mouseSensitivity.y * Time.deltaTime;
 
-        _horizontal += mouseX; // + gamepadX;
-        _vertical += mouseY; // + gamepadY;
+        _horizontal += mouseX + gamepadX;
+        _vertical += mouseY + gamepadY;
     }
 }
